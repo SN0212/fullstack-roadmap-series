@@ -58,6 +58,10 @@ function showQuote() {
 function showRiddle() {
   // Value should be in format: { question: '', answer: '' }
   const randomRiddle = getRandomData("riddles");
+  const riddleQuestion = document.createElement('p');
+  riddleQuestion.textContent = 'Q: ' + randomRiddle.question;
+  let ref = document.querySelector('#riddle');
+  ref.after(riddleQuestion);
 }
 
 /**
@@ -67,7 +71,11 @@ function showRiddle() {
  *   that the answer is already revealed
  * - If there is a riddle shown but no answer, unhide the answer!
  */
-function revealAnswers() {}
+function revealAnswers() {
+  const riddleAnswer = document.createElement('p');
+  riddleAnswer.textContent = 'A: ' + randomRiddle.answer;
+  riddleQuestion.after(riddleAnswer);
+}
 
 /**
  * This function is used to get random data.  Don't worry about how it works, just know how to use it.  Usage is pre-filled in the functions above already, but here's an explanation of the function anyways.
