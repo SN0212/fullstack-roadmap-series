@@ -2,7 +2,12 @@
  * TODO: Implement a function that clears all the content
  * prior to generating new random content
  */
-function clearAll() {}
+function clearAll() {
+  let ref = document.querySelectorAll('.clear');
+  for (let i = 0; i < ref.length; i++){
+    ref[i].innerHTML = '';
+  }
+}
 
 /**
  * TODO:
@@ -11,11 +16,12 @@ function clearAll() {}
  */
 function showMeme() {
   // Value is a string representing image URL
-  const randomMemeUrl = getRandomData("memes");
+  clearAll();
+  const randomMemeUrl = getRandomData('memes');
   const meme = document.createElement('img');
   meme.setAttribute('src', randomMemeUrl);
-  let ref = document.querySelector('#joke');
-  ref.before(meme);
+  let ref = document.querySelector('#showMeme');
+  ref.appendChild(meme);
 }
 
 /**
@@ -25,11 +31,12 @@ function showMeme() {
  */
 function showJoke() {
   // Value is a string representing the joke
-  const randomJokeText = getRandomData("jokes");
+  clearAll();
+  const randomJokeText = getRandomData('jokes');
   const joke = document.createElement('p');
   joke.textContent = randomJokeText;
-  let ref = document.querySelector('#wisdom');
-  ref.before(joke);
+  let ref = document.querySelector('#showJoke');
+  ref.appendChild(joke);
 }
 
 /**
@@ -39,13 +46,14 @@ function showJoke() {
  */
 function showQuote() {
   // Value should be in format: { quote: '', author: '' }
-  const randomQuote = getRandomData("quotes");
+  clearAll();
+  const randomQuote = getRandomData('quotes');
   const quote = document.createElement('p');
   const author = document.createElement('p');
   quote.textContent = randomQuote.quote;
-  author.textContent = "by " + randomQuote.author;
-  let ref = document.querySelector('#riddle');
-  ref.before(quote);
+  author.textContent = "-" + randomQuote.author;
+  let ref = document.querySelector('#showQuote');
+  ref.appendChild(quote);
   quote.after(author);
 }
 
@@ -57,11 +65,12 @@ function showQuote() {
  */
 function showRiddle() {
   // Value should be in format: { question: '', answer: '' }
-  const randomRiddle = getRandomData("riddles");
+  clearAll();
+  window.randomRiddle = getRandomData('riddles');
   const riddleQuestion = document.createElement('p');
   riddleQuestion.textContent = 'Q: ' + randomRiddle.question;
-  let ref = document.querySelector('#riddle');
-  ref.after(riddleQuestion);
+  let ref = document.querySelector('#showRiddle');
+  ref.appendChild(riddleQuestion);
 }
 
 /**
@@ -74,7 +83,8 @@ function showRiddle() {
 function revealAnswers() {
   const riddleAnswer = document.createElement('p');
   riddleAnswer.textContent = 'A: ' + randomRiddle.answer;
-  riddleQuestion.after(riddleAnswer);
+  let ref = document.querySelector('#showRiddle');
+  ref.appendChild(riddleAnswer);
 }
 
 /**
